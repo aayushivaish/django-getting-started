@@ -8,3 +8,9 @@ class short_url(models.Model):
     long_url = models.URLField("URL" , unique = True)
     def __str__(self):
         return self.user.username
+# Create your models here.
+class websites(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    long_url = models.URLField("URL" , unique = True)
+    def __str__(self):
+        return self.long_url

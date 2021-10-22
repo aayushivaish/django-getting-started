@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import short_url
+from .models import short_url,websites
 from .forms import UrlForm
 from .short import shortner
 # Create your views here.
@@ -23,6 +23,7 @@ def index(request):
             newurl.short_url = a
             newurl.user = request.user
             newurl.save()
+            websites.objects.create(user=request.user,long_url = newurl.long_url)
             myurl = 'http://127.0.0.1:8000/' + a
         else:
             form = UrlForm()
